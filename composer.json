@@ -1,5 +1,5 @@
 {
-    "name": "stnhr/smartsync-table-nazmul-hasan-robin",
+    "name": "nhrst/smartsync-table",
     "description": "A WordPress plugin to fetch data from a remote API, display it via a custom block, and manage it in the admin area.",
     "type": "wordpress-plugin",
     "license": "GPLv2",
@@ -13,7 +13,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "Stnhr\\SmartSyncTableNazmulHasanRobin\\": "includes/"
+            "Nhrst\\SmartsyncTable\\": "includes/"
         },
         "files": [ "includes/functions.php" ]
     }
