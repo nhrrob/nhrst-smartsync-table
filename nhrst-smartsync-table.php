@@ -95,6 +95,7 @@ final class Nhrst_Smartsync_Table {
         }
 
         new Nhrst\SmartsyncTable\API();
+        new Nhrst\SmartsyncTable\CLI();
     }
 
     /**

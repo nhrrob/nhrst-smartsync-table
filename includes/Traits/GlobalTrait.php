@@ -3,7 +3,7 @@
 namespace Nhrst\SmartsyncTable\Traits;
 
 trait GlobalTrait
-{
+{    
     public function dd($var)
     {
         echo "<pre>";
