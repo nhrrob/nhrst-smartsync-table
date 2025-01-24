@@ -13,6 +13,8 @@
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
 
+use Nhrst\SmartsyncTable\App;
+
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
@@ -81,11 +83,14 @@ final class Nhrst_Smartsync_Table {
      * @return void
      */
     public function init_plugin() {
+        $ajaxObj = new Nhrst\SmartsyncTable\Ajax();
+        $apiObj = new Nhrst\SmartsyncTable\Api();
+        $cliObj = new Nhrst\SmartsyncTable\Cli();
 
         new Nhrst\SmartsyncTable\Assets();
 
         if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-            new Nhrst\SmartsyncTable\Ajax();
+            $ajaxObj->init();
         }
 
         if ( is_admin() ) {
@@ -94,8 +99,8 @@ final class Nhrst_Smartsync_Table {
             new Nhrst\SmartsyncTable\Frontend();
         }
 
-        new Nhrst\SmartsyncTable\API();
-        new Nhrst\SmartsyncTable\CLI();
+        $apiObj->init();
+        $cliObj->init();
     }
 
     /**
