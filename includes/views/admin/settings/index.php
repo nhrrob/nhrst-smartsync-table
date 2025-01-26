@@ -26,7 +26,7 @@ $rows = $data['data']['rows'] ?? [];
         <?php
         $table = new SettingsTable($data);
         $table->prepare_items();
-        $table->search_box( 'search', 'search_id' );
+        // $table->search_box( 'search', 'search_id' );
         $table->display();
         ?>
     </form>

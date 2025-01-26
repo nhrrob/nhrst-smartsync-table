@@ -25,6 +25,68 @@ class SettingsTable extends \WP_List_Table {
     }
 
     /**
+     * Get the table data
+     *
+     * @return Array
+     */
+    private function table_data()
+    {
+        $data = [];
+
+        $data[] = [
+                    'id'            => 1,
+                    'first_name'    => 'The Shawshank Redemption',
+                    'last_name'     => 'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.',
+                    'email'         => '1994',
+                    'date'          => 'Frank Darabont',
+        ];
+
+        $data[] = [
+                    'id'            => 2,
+                    'first_name'    => 'The Hello Redemption',
+                    'last_name'     => 'ok Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.',
+                    'email'         => '1995',
+                    'date'          => 'as Frank Darabont',
+        ];
+
+        return $data;
+    }
+
+    /**
+     * Allows you to sort the data by the variables set in the $_GET
+     *
+     * @return Mixed
+     */
+    private function sort_data( $a, $b )
+    {
+        // Set defaults
+        $orderby = 'id';
+        $order = 'asc';
+
+        // If orderby is set, use this as the sort column
+        if(!empty($_GET['orderby']))
+        {
+            $orderby = $_GET['orderby'];
+        }
+
+        // If order is set use this as the order
+        if(!empty($_GET['order']))
+        {
+            $order = $_GET['order'];
+        }
+
+
+        $result = strcmp( $a[$orderby], $b[$orderby] );
+
+        if($order === 'asc')
+        {
+            return $result;
+        }
+
+        return -$result;
+    }
+
+    /**
      * Message to show if no items found
      *
      * @return void
@@ -39,20 +101,12 @@ class SettingsTable extends \WP_List_Table {
      * @return array
      */
     public function get_columns() {
-        // return [
-        //     'cb'         => '<input type="checkbox" />',
-        //     'name'       => __( 'Name', 'nhrst-smartsync-table' ),
-        //     'address'    => __( 'Address', 'nhrst-smartsync-table' ),
-        //     'phone'      => __( 'Phone', 'nhrst-smartsync-table' ),
-        //     'created_at' => __( 'Date', 'nhrst-smartsync-table' ),
-        // ];
-
-        $columns = [
-            // 'cb' => '<input type="checkbox" />',
-        ];
+        $columns = [];
 
         foreach ($this->headers as $header) {
-            $columns[strtolower(str_replace(' ', '_', $header))] = esc_html__( $header, 'nhrst-smartsync-table' );
+            $column_slug = strtolower(str_replace(' ', '_', $header));
+
+            $columns[ $column_slug ] = esc_html__( $header, 'nhrst-smartsync-table' );
         }
 
         return $columns;
@@ -63,14 +117,27 @@ class SettingsTable extends \WP_List_Table {
      *
      * @return array
      */
-    // function get_sortable_columns() {
-    //     $sortable_columns = [
-    //         'name'       => [ 'name', true ],
-    //         'created_at' => [ 'created_at', true ],
-    //     ];
+    function get_sortable_columns() {
+        $sortable_columns = [];
 
-    //     return $sortable_columns;
-    // }
+        foreach ($this->headers as $header) {
+            $column_slug = strtolower(str_replace(' ', '_', $header));
+
+            $sortable_columns[ $column_slug ] = [ $column_slug, false ];
+        }
+
+        return $sortable_columns;
+    }
+
+    /**
+     * Get hidden columns
+     *
+     * @return Array
+     */
+    public function get_hidden_columns()
+    {
+        return [];
+    }
 
     /**
      * Set the bulk actions
@@ -78,9 +145,9 @@ class SettingsTable extends \WP_List_Table {
      * @return array
      */
     public function get_bulk_actions() {
-        $actions = array(
+        $actions = [
             'trash'  => __( 'Move to Trash', 'nhrst-smartsync-table' ),
-        );
+        ];
 
         return $actions;
     }
@@ -96,12 +163,13 @@ class SettingsTable extends \WP_List_Table {
     protected function column_default( $item, $column_name ) {
 
         switch ( $column_name ) {
-
             case 'created_at':
                 return wp_date( get_option( 'date_format' ), strtotime( $item->created_at ) );
 
             default:
-                return isset( $item->$column_name ) ? esc_html( $item->$column_name ) : '';
+            // echo "<pre>";
+            // print_r($item[ $column_name ]);
+                return isset( $item[ $column_name ] ) ? esc_html( $item[ $column_name ] ) : '';
         }
     }
 
@@ -141,12 +209,11 @@ class SettingsTable extends \WP_List_Table {
      * @return void
      */
     public function prepare_items() {
-        $columns   = $this->get_columns();
-        $hidden   = [];
+        // $columns   = $this->get_columns();
+        // $hidden   = [];
         // $sortable = $this->get_sortable_columns();
-        $sortable = [];
 
-        $this->_column_headers = [ $columns, $hidden, $sortable ];
+        // $this->_column_headers = [ $columns, $hidden, $sortable ];
 
         // $per_page     = 20;
         // $current_page = $this->get_pagenum();
@@ -173,6 +240,43 @@ class SettingsTable extends \WP_List_Table {
         //     $row; // Use API-provided keys and values directly.
         // }, $this->data);
 
+        // $data = [];
+        // foreach ($this->data as $key => $row) {
+        //     $row_values = array_values($row);
+        //     $column_keys = array_keys($columns);
+
+        //     $data[] = array_combine($column_keys, $row_values);
+        // }
+
+        // $this->items = $data;
+
+        //
+        $columns = $this->get_columns();
+        $hidden = $this->get_hidden_columns();
+        $sortable = $this->get_sortable_columns();
+
+        $data = $this->table_data();
+        usort( $data, [ &$this, 'sort_data' ] );
+
+        $perPage = 3;
+        $currentPage = $this->get_pagenum();
+        $totalItems = count($data);
+
+        $this->set_pagination_args( [
+            'total_items' => $totalItems,
+            'per_page'    => $perPage
+        ] );
+
+        $data = array_slice($data,(($currentPage-1)*$perPage),$perPage);
+
+        $this->_column_headers = [ $columns, $hidden, $sortable ];
+
+        // echo "<pre>";
+        $this->items = $data;
+        // print_r($this->items);
+        // $this->items = array_values( $this->data );
+        // print_r($this->items);
+
         $data = [];
         foreach ($this->data as $key => $row) {
             $row_values = array_values($row);
@@ -181,12 +285,10 @@ class SettingsTable extends \WP_List_Table {
             $data[] = array_combine($column_keys, $row_values);
         }
 
+        // echo "<pre>";
+        // print_r($data);
         $this->items = $data;
 
-        echo '<pre>';
-        print_r($columns);
-        print_r($this->items);
-        echo '</pre>';
     }
 
 }
