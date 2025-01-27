@@ -25,34 +25,6 @@ class SettingsTable extends \WP_List_Table {
     }
 
     /**
-     * Get the table data
-     *
-     * @return Array
-     */
-    private function table_data()
-    {
-        $data = [];
-
-        $data[] = [
-                    'id'            => 1,
-                    'first_name'    => 'The Shawshank Redemption',
-                    'last_name'     => 'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.',
-                    'email'         => '1994',
-                    'date'          => 'Frank Darabont',
-        ];
-
-        $data[] = [
-                    'id'            => 2,
-                    'first_name'    => 'The Hello Redemption',
-                    'last_name'     => 'ok Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.',
-                    'email'         => '1995',
-                    'date'          => 'as Frank Darabont',
-        ];
-
-        return $data;
-    }
-
-    /**
      * Allows you to sort the data by the variables set in the $_GET
      *
      * @return Mixed
@@ -144,13 +116,13 @@ class SettingsTable extends \WP_List_Table {
      *
      * @return array
      */
-    public function get_bulk_actions() {
-        $actions = [
-            'trash'  => __( 'Move to Trash', 'nhrst-smartsync-table' ),
-        ];
+    // public function get_bulk_actions() {
+    //     $actions = [
+    //         'trash'  => __( 'Move to Trash', 'nhrst-smartsync-table' ),
+    //     ];
 
-        return $actions;
-    }
+    //     return $actions;
+    // }
 
     /**
      * Default column values
@@ -164,11 +136,10 @@ class SettingsTable extends \WP_List_Table {
 
         switch ( $column_name ) {
             case 'created_at':
-                return wp_date( get_option( 'date_format' ), strtotime( $item->created_at ) );
+            case 'date':
+                return isset( $item[ $column_name ] ) ? wp_date( get_option( 'date_format' ), esc_html( $item[ $column_name ] ) ) : '';
 
             default:
-            // echo "<pre>";
-            // print_r($item[ $column_name ]);
                 return isset( $item[ $column_name ] ) ? esc_html( $item[ $column_name ] ) : '';
         }
     }
@@ -209,86 +180,35 @@ class SettingsTable extends \WP_List_Table {
      * @return void
      */
     public function prepare_items() {
-        // $columns   = $this->get_columns();
-        // $hidden   = [];
-        // $sortable = $this->get_sortable_columns();
-
-        // $this->_column_headers = [ $columns, $hidden, $sortable ];
-
-        // $per_page     = 20;
-        // $current_page = $this->get_pagenum();
-        // $offset       = ( $current_page - 1 ) * $per_page;
-
-        // $args = [
-        //     'number' => $per_page,
-        //     'offset' => $offset,
-        // ];
-
-        // if ( isset( $_REQUEST['orderby'] ) && isset( $_REQUEST['order'] ) ) {
-        //     $args['orderby'] = $_REQUEST['orderby'];
-        //     $args['order']   = $_REQUEST['order'] ;
-        // }
-
-        // $this->items = wd_ac_get_addresses( $args );
-
-        // $this->set_pagination_args( [
-        //     'total_items' => wd_ac_address_count(),
-        //     'per_page'    => $per_page
-        // ] );
-
-        // $this->items = array_map(function ($row) {
-        //     $row; // Use API-provided keys and values directly.
-        // }, $this->data);
-
-        // $data = [];
-        // foreach ($this->data as $key => $row) {
-        //     $row_values = array_values($row);
-        //     $column_keys = array_keys($columns);
-
-        //     $data[] = array_combine($column_keys, $row_values);
-        // }
-
-        // $this->items = $data;
-
-        //
         $columns = $this->get_columns();
         $hidden = $this->get_hidden_columns();
         $sortable = $this->get_sortable_columns();
 
-        $data = $this->table_data();
+        $data = [];
+        foreach ($this->data as $key => $row) {
+            $row_values     = array_values($row);
+            $column_keys    = array_keys($columns);
+
+            $data[]         = array_combine($column_keys, $row_values);
+        }
+
         usort( $data, [ &$this, 'sort_data' ] );
 
-        $perPage = 3;
-        $currentPage = $this->get_pagenum();
-        $totalItems = count($data);
+        $per_page       = 20;
+        $current_page   = $this->get_pagenum();
+        $totalItems     = is_array($data) ? count($data) : 0;
+        $offset         = ( $current_page - 1 ) * $per_page;
 
         $this->set_pagination_args( [
             'total_items' => $totalItems,
-            'per_page'    => $perPage
+            'per_page'    => $per_page
         ] );
 
-        $data = array_slice($data,(($currentPage-1)*$perPage),$perPage);
+        $data = array_slice($data, $offset, $per_page);
 
         $this->_column_headers = [ $columns, $hidden, $sortable ];
 
-        // echo "<pre>";
         $this->items = $data;
-        // print_r($this->items);
-        // $this->items = array_values( $this->data );
-        // print_r($this->items);
-
-        $data = [];
-        foreach ($this->data as $key => $row) {
-            $row_values = array_values($row);
-            $column_keys = array_keys($columns);
-
-            $data[] = array_combine($column_keys, $row_values);
-        }
-
-        // echo "<pre>";
-        // print_r($data);
-        $this->items = $data;
-
     }
 
 }

@@ -36,6 +36,16 @@ class Assets {
                 'version' => filemtime( NHRST_PATH . '/assets/js/admin.js' ),
                 'deps'    => [ 'jquery', 'wp-util' ]
             ],
+            'nhrst-common-script' => [
+                'src'     => NHRST_ASSETS . '/js/common.js',
+                'version' => filemtime( NHRST_PATH . '/assets/js/common.js' ),
+                'deps'    => [ 'jquery', 'wp-util' ]
+            ],
+            'nhrst-table-block-editor' => [
+                'src'     => NHRST_ASSETS . '/js/table-block.js',
+                'version' => filemtime( NHRST_PATH . '/assets/js/table-block.js' ),
+                'deps'    => [ 'wp-blocks', 'wp-element', 'wp-components' ]
+            ],
         ];
     }
 
@@ -78,11 +88,22 @@ class Assets {
             wp_register_style( $handle, $style['src'], $deps, $style['version'] );
         }
 
-        wp_localize_script( 'nhrst-admin-script', 'nhrstSmartsyncTable', [
+        wp_localize_script( 'nhrst-admin-script', 'nhrstSmartsyncTableObj', [
             'nonce' => wp_create_nonce( 'nhrst-admin-nonce' ),
             'confirm' => __( 'Are you sure?', 'nhrst-smartsync-table' ),
             'error' => __( 'Something went wrong', 'nhrst-smartsync-table' ),
             'apiUrl' => esc_url_raw(rest_url('nhrst-smartsync-table/v1/settings')),
         ] );
+
+        wp_enqueue_script( 'nhrst-common-script' );
+
+        wp_localize_script(
+            'nhrst-common-script', 
+            'nhrstSmartSyncTableCommonObj', 
+            [
+                'ajax_url' => admin_url('admin-ajax.php'),
+                'nonce' => wp_create_nonce('nhrst-common-nonce')
+            ]
+        );
     }
 }

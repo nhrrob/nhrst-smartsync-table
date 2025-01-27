@@ -20,6 +20,8 @@ class Ajax {
     }
 
     public function handle_ajax_request() {
+        check_ajax_referer('nhrst-common-nonce', 'nonce');
+
         $apiObj = new Api();
         $data = $apiObj->fetch_table_data();
         wp_send_json_success( $data );

@@ -1,0 +1,28 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "nhrst-smartsync-table/table-block",
+    "version": "1.0.0",
+    "title": "NHR SmartSync Table",
+    "category": "widgets",
+    "icon": "database",
+    "description": "Display API data in a table format",
+    "keywords": ["api", "data", "table"],
+    "supports": {
+        "html": false
+    },
+    "textdomain": "nhrst-smartsync-table",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "style": "file:./style-index.css",
+    "attributes": {
+        "showColumns": {
+            "type": "object",
+            "default": {
+                "id": true,
+                "name": true,
+                "email": true
+            }
+        }
+    }
+}

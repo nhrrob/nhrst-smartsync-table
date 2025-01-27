@@ -83,11 +83,12 @@ final class Nhrst_Smartsync_Table {
      * @return void
      */
     public function init_plugin() {
+        new Nhrst\SmartsyncTable\Assets();
+
         $ajaxObj = new Nhrst\SmartsyncTable\Ajax();
         $apiObj = new Nhrst\SmartsyncTable\Api();
         $cliObj = new Nhrst\SmartsyncTable\Cli();
-
-        new Nhrst\SmartsyncTable\Assets();
+        $blocksObj = new Nhrst\SmartsyncTable\Blocks();
 
         if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
             $ajaxObj->init();
@@ -101,6 +102,7 @@ final class Nhrst_Smartsync_Table {
 
         $apiObj->init();
         $cliObj->init();
+        $blocksObj->init();
     }
 
     /**
