@@ -42,7 +42,6 @@ class Blocks extends App {
         $data = $apiObj->fetch_table_data();
 
         if (is_wp_error($data)) {
-            error_log($data->get_error_message());
             wp_send_json_error(['message' => __('Error fetching data', 'nhrst-smartsync-table')]);
         }
         
@@ -74,7 +73,7 @@ class Blocks extends App {
                                     <?php if ($visible) : ?>
                                         <td><?php echo esc_html($row[$column]); ?></td>
                                         <!-- if date column, format date -->
-                                         
+
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                             </tr>

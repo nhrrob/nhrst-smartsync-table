@@ -64,7 +64,7 @@ class SettingsTable extends \WP_List_Table {
      * @return void
      */
     public function no_items() {
-        _e( 'No record found', 'nhrst-smartsync-table' );
+        esc_html_e( 'No record found', 'nhrst-smartsync-table' );
     }
 
     /**
@@ -78,7 +78,7 @@ class SettingsTable extends \WP_List_Table {
         foreach ($this->headers as $header) {
             $column_slug = strtolower(str_replace(' ', '_', $header));
 
-            $columns[ $column_slug ] = esc_html__( $header, 'nhrst-smartsync-table' );
+            $columns[ $column_slug ] = esc_html( $header );
         }
 
         return $columns;
