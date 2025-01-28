@@ -1,25 +1,4 @@
-.nhrst-smartsync-table-table-block {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1em 0;
-
-    th, td {
-        padding: 0.5em;
-        border: 1px solid #ddd;
-        text-align: left;
-    }
-
-    th {
-        background-color: #f5f5f5;
-        font-weight: bold;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
-}
-
-.wp-block-nhrst-smartsync-table-table-block {
+.nhrst-table-block-wrapper {
     .nhrst-table-block-table-wrapper {
         margin: 1em 0;
         overflow-x: auto;

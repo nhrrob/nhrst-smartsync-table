@@ -55,30 +55,33 @@ class Blocks extends App {
         ob_start();
         ?>
         <div class="nhrst-table-block-wrapper">
-            <h3><?php echo esc_html($data['title']); ?></h3>
-            <table class="nhrst-table-block-table">
-                <thead>
-                    <tr>
-                        <?php foreach ($attributes['showColumns'] as $column => $visible) : ?>
-                            <?php if ($visible) : ?>
-                                <th><?php echo esc_html($column); ?></th>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($data['data']['rows'] as $row) : ?>
+            <div class="nhrst-table-block-table-wrapper">
+                <h3><?php echo esc_html($data['title']); ?></h3>
+                <table class="nhrst-table-block-table">
+                    <thead>
                         <tr>
                             <?php foreach ($attributes['showColumns'] as $column => $visible) : ?>
                                 <?php if ($visible) : ?>
-                                    <td><?php echo esc_html($row[$column]); ?></td>
+                                    <th><?php echo esc_html($column); ?></th>
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($data['data']['rows'] as $row) : ?>
+                            <tr>
+                                <?php foreach ($attributes['showColumns'] as $column => $visible) : ?>
+                                    <?php if ($visible) : ?>
+                                        <td><?php echo esc_html($row[$column]); ?></td>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>    
         </div>
+        
         <?php
         return ob_get_clean();
     }
