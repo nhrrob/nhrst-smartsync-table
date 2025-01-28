@@ -96,12 +96,12 @@ registerBlockType('nhrst-smartsync-table/table-block', {
                         </tbody>
                     </table>
                     
-                    <button 
+                    {/* <button 
                         className="components-button is-secondary"
                         onClick={fetchApiData}
                     >
                         {__('Refresh Data', 'nhrst-smartsync-table')}
-                    </button>
+                    </button> */}
                 </div>
             );
         };

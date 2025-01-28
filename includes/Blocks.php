@@ -73,6 +73,8 @@ class Blocks extends App {
                                 <?php foreach ($attributes['showColumns'] as $column => $visible) : ?>
                                     <?php if ($visible) : ?>
                                         <td><?php echo esc_html($row[$column]); ?></td>
+                                        <!-- if date column, format date -->
+                                         
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                             </tr>
