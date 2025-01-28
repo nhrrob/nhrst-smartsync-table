@@ -41,9 +41,9 @@ class Assets {
                 'version' => filemtime( NHRST_PATH . '/assets/js/common.js' ),
                 'deps'    => [ 'jquery', 'wp-util' ]
             ],
-            'nhrst-table-block-editor' => [
-                'src'     => NHRST_ASSETS . '/js/table-block.js',
-                'version' => filemtime( NHRST_PATH . '/assets/js/table-block.js' ),
+            'nhrst-table-block-script' => [
+                'src'     => NHRST_INCLUDES_PATH . '/blocks/table-block/build/index.js',
+                'version' => filemtime( NHRST_INCLUDES_PATH . '/blocks/table-block/build/index.js' ),
                 'deps'    => [ 'wp-blocks', 'wp-element', 'wp-components' ]
             ],
         ];

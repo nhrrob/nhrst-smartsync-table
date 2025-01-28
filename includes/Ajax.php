@@ -24,6 +24,12 @@ class Ajax {
 
         $apiObj = new Api();
         $data = $apiObj->fetch_table_data();
+
+        if (is_wp_error($data)) {
+            error_log($data->get_error_message());
+            wp_send_json_error(['message' => __('Error fetching data', 'nhrst-smartsync-table')]);
+        }
+        
         wp_send_json_success( $data );
     }
     

@@ -11,6 +11,11 @@ class Frontend {
      * Initialize the class
      */
     function __construct() {
-        new Frontend\Shortcode();
+        
+    }
+
+    public function init() {
+        $shortcodeObj = new Frontend\Shortcode();
+        $shortcodeObj->init();
     }
 }

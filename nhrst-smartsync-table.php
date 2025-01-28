@@ -89,6 +89,7 @@ final class Nhrst_Smartsync_Table {
         $apiObj = new Nhrst\SmartsyncTable\Api();
         $cliObj = new Nhrst\SmartsyncTable\Cli();
         $blocksObj = new Nhrst\SmartsyncTable\Blocks();
+        $frontendObj = new Nhrst\SmartsyncTable\Frontend();
 
         if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
             $ajaxObj->init();
@@ -97,7 +98,7 @@ final class Nhrst_Smartsync_Table {
         if ( is_admin() ) {
             new Nhrst\SmartsyncTable\Admin();
         } else {
-            new Nhrst\SmartsyncTable\Frontend();
+            $frontendObj->init();
         }
 
         $apiObj->init();

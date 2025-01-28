@@ -5,14 +5,16 @@
     "version": "1.0.0",
     "title": "NHR SmartSync Table",
     "category": "widgets",
-    "icon": "database",
-    "description": "Display API data in a table format",
+    "icon": "grid-view",
+    "description": "Display API data in a customizable table format",
     "keywords": ["api", "data", "table"],
     "supports": {
-        "html": false
+        "html": false,
+        "align": ["wide", "full"]
     },
     "textdomain": "nhrst-smartsync-table",
     "editorScript": "file:./index.js",
+    "viewScript": "file:./index.js",
     "editorStyle": "file:./index.css",
     "style": "file:./style-index.css",
     "attributes": {
@@ -20,8 +22,10 @@
             "type": "object",
             "default": {
                 "id": true,
-                "name": true,
-                "email": true
+                "fname": true,
+                "lname": true,
+                "email": true,
+                "date": true
             }
         }
     }
