@@ -30,6 +30,7 @@ class Menu extends App {
         $capability = esc_html( 'manage_options' );
 
         $hook = add_submenu_page( 'tools.php', __( 'NHR SmartSync Table', 'nhrst-smartsync-table' ), __( 'NHR SmartSync Table', 'nhrst-smartsync-table' ), $capability, $parent_slug, [ $this, 'settings_page' ] );
+        
         add_action( 'admin_head-' . $hook, [ $this, 'enqueue_assets' ] );
     }
 
@@ -74,7 +75,16 @@ class Menu extends App {
         $nhrst_plugin = plugin_basename(NHRST_FILE);
 
         if ($file == $nhrst_plugin && current_user_can('manage_options')) {
-            $links[] = sprintf('<a href="%s">%s</a>', admin_url("tools.php?page={$this->page_slug}"), __('NHR SmartSync Table', 'nhrst-smartsync-table'));
+            $settings_url = add_query_arg([
+                'page' => $this->page_slug,
+                '_wpnonce' => wp_create_nonce('nhrst-settings-nonce')
+            ], admin_url('tools.php'));
+
+            $links[] = sprintf(
+                '<a href="%s">%s</a>', 
+                esc_url($settings_url), 
+                esc_html__('NHR SmartSync Table', 'nhrst-smartsync-table')
+            );
         }
 
         return $links;
