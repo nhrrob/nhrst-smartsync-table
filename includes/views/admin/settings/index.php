@@ -38,7 +38,7 @@ $rows = $data['data']['rows'] ?? [];
         
         <h1><?php echo esc_html($data['title'] ?? 'API Data'); ?></h1>
 
-        <p class="nhrst-table-refresh-button-wrap"><button id="refresh-data" class="nhrst-button nhrst-table-refresh-button">Refresh Data</button></p>
+        <p class="nhrst-table-refresh-button-wrap"><button id="nhrst-table-refresh-button" class="nhrst-button nhrst-table-refresh-button">Refresh Data</button></p>
         
 
         <form class="nhrst-settings-page-form" action="" method="post">

@@ -34,6 +34,14 @@
         "email": true,
         "date": true
       }
+    },
+    "orderBy": {
+      "type": "string",
+      "default": "id"
+    },
+    "order": {
+      "type": "string",
+      "default": "asc"
     }
   }
 }

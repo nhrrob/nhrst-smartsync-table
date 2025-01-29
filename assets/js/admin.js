@@ -3,9 +3,9 @@
     // console.log('Admin js');
 
     jQuery(document).ready(function ($) {
-        $('#refresh-data').on('click', function () {
-            fetch('/wp-admin/admin-ajax.php?action=nhrst_get_table_data')
-                .then(() => location.reload());
+        $('#nhrst-table-refresh-button').on('click', function () {
+            fetch(`${nhrstSmartSyncTableCommonObj.ajax_url}?action=nhrst_refresh_api_data&nonce=${nhrstSmartSyncTableCommonObj.nonce}`)
+            .then(() => location.reload());
         });
     });    
 

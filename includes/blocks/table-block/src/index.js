@@ -5,6 +5,14 @@ import { Spinner } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import './style.scss';
+import { SelectControl } from '@wordpress/components';
+
+const sortableColumns = ['id', 'fname', 'lname', 'email', 'date'];
+
+const orderOptions = [
+    { label: __('Ascending', 'nhrst-smartsync-table'), value: 'asc' },
+    { label: __('Descending', 'nhrst-smartsync-table'), value: 'desc' }
+];
 
 registerBlockType('nhrst-smartsync-table/table-block', {
     edit: ({ attributes, setAttributes }) => {
@@ -55,12 +63,31 @@ registerBlockType('nhrst-smartsync-table/table-block', {
 
         const headers = Object.keys(columnMapping);
 
+        const handleSort = (column) => {
+            if (!sortableColumns.includes(column)) return;
+        
+            // Toggle order direction if the same column is clicked
+            const newDirection = attributes.orderBy === column && attributes.orderDirection === 'asc' ? 'desc' : 'asc';
+        
+            setAttributes({
+                orderBy: column,
+                orderDirection: newDirection
+            });
+        };
+
         const renderTable = () => {
             if (!apiData?.data?.rows) {
                 return <p>{__('No data available.', 'nhrst-smartsync-table')}</p>;
             }
 
-            const rows = Object.values(apiData.data.rows);
+            let rows = Object.values(apiData.data.rows);
+
+            // rows.sort((a, b) => a.id - b.id);
+
+            rows.sort((a, b) => {
+                const orderFactor = attributes.orderDirection === 'asc' ? 1 : -1;
+                return (a[attributes.orderBy] > b[attributes.orderBy] ? 1 : -1) * orderFactor;
+            });
 
             return (
                 <div className="nhrst-table-block-table-wrapper">
@@ -71,8 +98,8 @@ registerBlockType('nhrst-smartsync-table/table-block', {
                             <tr>
                                 {headers.map((header) => 
                                     attributes.showColumns[header] && (
-                                        <th key={header}>
-                                            {columnMapping[header]}
+                                        <th key={header} onClick={() => handleSort(header)} style={{ cursor: 'pointer' }}>
+                                            {columnMapping[header]} {attributes.orderBy === header ? (attributes.orderDirection === 'asc' ? '↑' : '↓') : ''}
                                         </th>
                                     )
                                 )}
@@ -156,6 +183,25 @@ registerBlockType('nhrst-smartsync-table/table-block', {
                             />
                         ))}
                     </PanelBody>
+
+                    <PanelBody title={__('Table Sorting', 'nhrst-smartsync-table')} initialOpen={true}>
+                        <SelectControl
+                            label={__('Order By', 'nhrst-smartsync-table')}
+                            value={attributes.orderBy}
+                            options={sortableColumns.map(col => ({
+                                label: columnMapping[col],
+                                value: col
+                            }))}
+                            onChange={(value) => setAttributes({ orderBy: value })}
+                        />
+                        <SelectControl
+                            label={__('Order Direction', 'nhrst-smartsync-table')}
+                            value={attributes.orderDirection}
+                            options={orderOptions}
+                            onChange={(value) => setAttributes({ orderDirection: value })}
+                        />
+                    </PanelBody>
+
                 </InspectorControls>
 
                 <div className="nhrst-table-block-wrapper">

@@ -60,6 +60,26 @@ class Blocks extends App {
             'date'  => __('Date', 'nhrst-smartsync-table'),
         ];
     
+        $orderBy = $attributes['orderBy'] ?? 'id';
+        $orderDirection = $attributes['orderDirection'] ?? 'asc';
+        
+        if (!array_key_exists($orderBy, $column_mapping)) {
+            $orderBy = 'id'; // Fallback to ID if invalid column
+        }
+
+        // Sort data
+        usort($data['data']['rows'], function ($a, $b) use ($orderBy, $orderDirection) {
+            if (!isset($a[$orderBy]) || !isset($b[$orderBy])) {
+                return 0; // Skip if data is missing
+            }
+    
+            if ($orderDirection === 'asc') {
+                return strnatcasecmp($a[$orderBy], $b[$orderBy]);
+            } else {
+                return strnatcasecmp($b[$orderBy], $a[$orderBy]);
+            }
+        });
+    
         ob_start();
 
         $date_format = get_option('date_format', 'Y-m-d');
@@ -72,7 +92,12 @@ class Blocks extends App {
                         <tr>
                             <?php foreach ($attributes['showColumns'] as $column => $visible) : ?>
                                 <?php if ($visible && isset($column_mapping[$column]) ) : ?>
-                                    <th><?php echo esc_html( $column_mapping[$column] ); ?></th>
+                                    <th data-column="<?php echo esc_attr($column); ?>" class="nhrst-sortable">
+                                        <?php echo esc_html( $column_mapping[$column] ); ?>
+                                        <!-- <?php //if ($orderBy === $column) : ?>
+                                            <?php //echo $orderDirection === 'asc' ? ' ↑' : ' ↓'; ?>
+                                        <?php //endif; ?> -->
+                                    </th>
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </tr>
