@@ -117,7 +117,20 @@ registerBlockType('nhrst-smartsync-table/table-block', {
         };
 
         const formatDate = (timestamp) => {
-            return new Date(timestamp * 1000).toLocaleDateString();
+            const dateFormat = nhrstSmartSyncTableCommonObj.date_format || 'Y-m-d';
+            // return new Date(timestamp * 1000).toLocaleDateString();
+            return new Date(timestamp * 1000).toLocaleDateString(undefined, mapDateFormat(dateFormat));
+        };
+
+        const mapDateFormat = (format) => {
+            const formatMap = {
+                'F j, Y': { year: 'numeric', month: 'long', day: 'numeric' },
+                'M d, Y': { year: 'numeric', month: 'short', day: '2-digit' },
+                'd/m/Y': { day: '2-digit', month: '2-digit', year: 'numeric' },
+                'm/d/Y': { month: '2-digit', day: '2-digit', year: 'numeric' },
+                'Y-m-d': { year: 'numeric', month: '2-digit', day: '2-digit' },
+            };
+            return formatMap[format] || { year: 'numeric', month: '2-digit', day: '2-digit' };
         };
 
         return (

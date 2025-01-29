@@ -102,7 +102,8 @@ class Assets {
             'nhrstSmartSyncTableCommonObj', 
             [
                 'ajax_url' => admin_url('admin-ajax.php'),
-                'nonce' => wp_create_nonce('nhrst-common-nonce')
+                'nonce' => wp_create_nonce('nhrst-common-nonce'),
+                'date_format' => get_option('date_format', 'Y-m-d'),
             ]
         );
     }

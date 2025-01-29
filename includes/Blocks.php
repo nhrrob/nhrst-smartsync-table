@@ -50,8 +50,19 @@ class Blocks extends App {
         }
 
         // $attributes = array_map('sanitize_text_field', $attributes);
+
+        // Column mapping for display names
+        $column_mapping = [
+            'id'    => __('ID', 'nhrst-smartsync-table'),
+            'fname' => __('First Name', 'nhrst-smartsync-table'),
+            'lname' => __('Last Name', 'nhrst-smartsync-table'),
+            'email' => __('Email', 'nhrst-smartsync-table'),
+            'date'  => __('Date', 'nhrst-smartsync-table'),
+        ];
     
         ob_start();
+
+        $date_format = get_option('date_format', 'Y-m-d');
         ?>
         <div class="nhrst-table-block-wrapper">
             <div class="nhrst-table-block-table-wrapper">
@@ -60,8 +71,8 @@ class Blocks extends App {
                     <thead>
                         <tr>
                             <?php foreach ($attributes['showColumns'] as $column => $visible) : ?>
-                                <?php if ($visible) : ?>
-                                    <th><?php echo esc_html($column); ?></th>
+                                <?php if ($visible && isset($column_mapping[$column]) ) : ?>
+                                    <th><?php echo esc_html( $column_mapping[$column] ); ?></th>
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </tr>
@@ -71,9 +82,15 @@ class Blocks extends App {
                             <tr>
                                 <?php foreach ($attributes['showColumns'] as $column => $visible) : ?>
                                     <?php if ($visible) : ?>
-                                        <td><?php echo esc_html($row[$column]); ?></td>
-                                        <!-- if date column, format date -->
-
+                                        <td>
+                                            <?php 
+                                            if ($column === 'date' && !empty($row[$column]) ) {
+                                                echo esc_html(date_i18n($date_format, intval($row[$column])));
+                                            } else {
+                                                echo esc_html($row[$column] ?? '-');
+                                            }
+                                            ?>
+                                        </td>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                             </tr>
