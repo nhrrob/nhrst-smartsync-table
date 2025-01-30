@@ -45,6 +45,8 @@ final class Nhrst_Smartsync_Table {
         register_activation_hook( __FILE__, [ $this, 'activate' ] );
 
         add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
+
+        add_action('init', [$this, 'load_textdomain']);
     }
 
     /**
@@ -116,6 +118,16 @@ final class Nhrst_Smartsync_Table {
         $installer = new Nhrst\SmartsyncTable\Installer();
         $installer->run();
     }
+
+    /**
+     * Load textdomain
+     *
+     * @return void
+     */
+    public function load_textdomain() {
+        load_plugin_textdomain('nhrst-smartsync-table', false, dirname(plugin_basename(__FILE__)) . '/languages/');
+    }
+
 }
 
 /**
