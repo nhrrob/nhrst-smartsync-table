@@ -11,7 +11,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 A WordPress plugin to fetch data from a remote API, display it via a custom block, and manage it in the admin area.
 
 
-== Description ==
+== Description == 
 - 🚀 [GitHub Repository](https://github.com/nhrrob/nhrst-smartsync-table): Found a bug or have a feature request? Let us know!
 - 💬 [Slack Community](https://join.slack.com/t/nhrrob/shared_invite/zt-2m3nyrl1f-eKv7wwJzsiALcg0nY6~e0Q): Got questions or just want to chat? Come hang out with us on Slack!
 
