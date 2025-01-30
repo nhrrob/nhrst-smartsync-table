@@ -42,3 +42,8 @@ node_modules
 /src
 postcss.config.js
 .wordpress-org
+/vendor/bin
+/vendor/dealerdirect
+/vendor/phpcsstandards
+/vendor/squizlabs
+/vendor/wp-coding-standards

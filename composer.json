@@ -10,11 +10,20 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
     "autoload": {
         "psr-4": {
             "Nhrst\\SmartsyncTable\\": "includes/"
         },
         "files": [ "includes/functions.php" ]
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.9",
+        "wp-coding-standards/wpcs": "dev-develop",
+        "phpcsstandards/phpcsutils": "^1.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }

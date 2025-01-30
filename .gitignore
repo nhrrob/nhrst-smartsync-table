@@ -9,3 +9,8 @@ composer.lock
 .idea/*
 pnpm-lock.yaml
 node_modules
+/vendor/bin
+/vendor/dealerdirect
+/vendor/phpcsstandards
+/vendor/squizlabs
+/vendor/wp-coding-standards
