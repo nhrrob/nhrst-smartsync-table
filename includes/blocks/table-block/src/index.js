@@ -23,11 +23,11 @@ registerBlockType('nhrst-smartsync-table/table-block', {
 
         // Column mapping for display names
         const columnMapping = {
-            'id': 'ID',
-            'fname': 'First Name',
-            'lname': 'Last Name',
-            'email': 'Email',
-            'date': 'Date'
+            'id': __('ID', 'nhrst-smartsync-table'),
+            'fname': __('First Name', 'nhrst-smartsync-table'),
+            'lname': __('Last Name', 'nhrst-smartsync-table'),
+            'email': __('Email', 'nhrst-smartsync-table'),
+            'date': __('Date', 'nhrst-smartsync-table'),
         };
 
         useEffect(() => {
@@ -44,18 +44,18 @@ registerBlockType('nhrst-smartsync-table/table-block', {
                 );
 
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    throw new Error(__('Network response was not ok', 'nhrst-smartsync-table'));
                 }
 
                 const result = await response.json();
                 if (result.success && result.data) {
                     setApiData(result.data);
                 } else {
-                    throw new Error('Invalid data received from API');
+                    throw new Error(__('Invalid data received from API', 'nhrst-smartsync-table'));
                 }
             } catch (error) {
                 setError(error.message);
-                console.error('Error fetching data:', error);
+                console.error(__('Error fetching data:', 'nhrst-smartsync-table'), error);
             } finally {
                 setIsLoading(false);
             }
@@ -122,13 +122,6 @@ registerBlockType('nhrst-smartsync-table/table-block', {
                             ))}
                         </tbody>
                     </table>
-                    
-                    {/* <button 
-                        className="components-button is-secondary"
-                        onClick={fetchApiData}
-                    >
-                        {__('Refresh Data', 'nhrst-smartsync-table')}
-                    </button> */}
                 </div>
             );
         };

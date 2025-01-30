@@ -15,8 +15,6 @@ class Assets {
     function __construct() {
         add_action( 'wp_enqueue_scripts', [ $this, 'register_assets' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'register_assets' ] );
-        // add_action( 'enqueue_block_editor_assets', [ $this, 'register_assets' ] ); // editor only
-        // add_action( 'enqueue_block_assets', [ $this, 'register_assets' ] ); // front and editor
     }
 
     /**
@@ -40,11 +38,6 @@ class Assets {
                 'src'     => NHRST_ASSETS . '/js/common.js',
                 'version' => filemtime( NHRST_PATH . '/assets/js/common.js' ),
                 'deps'    => [ 'jquery', 'wp-util' ]
-            ],
-            'nhrst-table-block-script' => [
-                'src'     => NHRST_INCLUDES_PATH . '/blocks/table-block/build/index.js',
-                'version' => filemtime( NHRST_INCLUDES_PATH . '/blocks/table-block/build/index.js' ),
-                'deps'    => [ 'wp-blocks', 'wp-element', 'wp-components' ]
             ],
         ];
     }

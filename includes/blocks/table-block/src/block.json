@@ -32,7 +32,7 @@
             "type": "string",
             "default": "id"
         },
-        "order": {
+        "orderDirection": {
             "type": "string",
             "default": "asc"
         }

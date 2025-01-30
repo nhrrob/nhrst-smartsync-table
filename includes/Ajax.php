@@ -39,7 +39,7 @@ class Ajax extends App {
 
         delete_transient( $this->table_cache_key );
     
-        wp_send_json_success(['message' => 'API data refreshed']);
+        wp_send_json_success(['message' => __( 'API data refreshed', 'nhrst-smartsync-table' )]);
     }
     
 }

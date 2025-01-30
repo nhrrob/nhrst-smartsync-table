@@ -5,7 +5,7 @@ use Nhrst\SmartsyncTable\Admin\Tables\SettingsTable;
  if (!defined('ABSPATH')) exit; // Exit if accessed directly 
 
 if (empty( $data ) || is_wp_error($data)) {
-    echo '<div class="notice notice-error"><p>Unable to retrieve API data.</p></div>';
+    echo '<div class="notice notice-error"><p>'. esc_html__('Unable to retrieve API data.', 'nhrst-smartsync-table') . '</p></div>';
     return;
 }
 
@@ -31,14 +31,14 @@ $rows = $data['data']['rows'] ?? [];
             ?>
             
             <a href="<?php echo esc_url($table_url); ?>" class="tab active">
-                NHR SmartSync Table
+                <?php esc_html_e('NHR SmartSync Table', 'nhrst-smartsync-table'); ?>
             </a>
             
         </div>
         
-        <h1><?php echo esc_html($data['title'] ?? 'API Data'); ?></h1>
+        <h1><?php echo esc_html( $data['title'] ?? 'API Data' ); ?></h1>
 
-        <p class="nhrst-table-refresh-button-wrap"><button id="nhrst-table-refresh-button" class="nhrst-button nhrst-table-refresh-button">Refresh Data</button></p>
+        <p class="nhrst-table-refresh-button-wrap"><button id="nhrst-table-refresh-button" class="nhrst-button nhrst-table-refresh-button"><?php esc_html_e('Refresh Data', 'nhrst-smartsync-table'); ?></button></p>
         
 
         <form class="nhrst-settings-page-form" action="" method="post">

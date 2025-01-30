@@ -46,7 +46,7 @@ class Blocks extends App {
         }
         
         if (!is_array($data) || !isset($data['data']['rows'])) {
-            return '<p>Invalid data received.</p>';
+            return '<p>'. esc_html__( 'Invalid data received.', 'nhrst-smartsync-table' ) . '</p>';
         }
 
         // $attributes = array_map('sanitize_text_field', $attributes);
@@ -110,9 +110,9 @@ class Blocks extends App {
                                         <td>
                                             <?php 
                                             if ($column === 'date' && !empty($row[$column]) ) {
-                                                echo esc_html(date_i18n($date_format, intval($row[$column])));
+                                                echo esc_html( date_i18n($date_format, intval($row[$column])) );
                                             } else {
-                                                echo esc_html($row[$column] ?? '-');
+                                                echo esc_html( ($row[$column] ?? '-') );
                                             }
                                             ?>
                                         </td>
