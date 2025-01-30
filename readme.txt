@@ -1,6 +1,6 @@
 === NHR SmartSync Table by Nazmul Hasan Robin ===
 Contributors: nhrrob
-Tags: table, data management, database, wp table, dynamic table
+Tags: table, api management, database, api table, dynamic table
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
