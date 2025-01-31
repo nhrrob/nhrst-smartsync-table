@@ -9,4 +9,11 @@ use Nhrst\SmartsyncTable\App;
  */
 class Page extends App {
 
+    /**
+     * Initialize the class
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 }

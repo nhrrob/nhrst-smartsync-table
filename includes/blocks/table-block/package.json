@@ -1,0 +1,20 @@
+{
+    "name": "@nhrst-smartsync-table/table-block",
+    "version": "1.0.0",
+    "description": "WordPress plugin for API data display",
+    "author": "Nazmul Hasan Robin <robin.sust08@gmail.com>",
+    "license": "GPL-2.0-or-later",
+    "main": "build/index.js",
+    "scripts": {
+        "build": "wp-scripts build",
+        "dev": "wp-scripts start",
+        "format": "wp-scripts format",
+        "lint:js": "wp-scripts lint-js"
+    },
+    "devDependencies": {
+        "@wordpress/scripts": "^27.8.0"
+    },
+    "files": [
+		"*"
+	]
+}

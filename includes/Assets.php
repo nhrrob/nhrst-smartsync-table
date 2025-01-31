@@ -15,8 +15,6 @@ class Assets {
     function __construct() {
         add_action( 'wp_enqueue_scripts', [ $this, 'register_assets' ] );
         add_action( 'admin_enqueue_scripts', [ $this, 'register_assets' ] );
-        // add_action( 'enqueue_block_editor_assets', [ $this, 'register_assets' ] ); // editor only
-        // add_action( 'enqueue_block_assets', [ $this, 'register_assets' ] ); // front and editor
     }
 
     /**
@@ -34,6 +32,11 @@ class Assets {
             'nhrst-admin-script' => [
                 'src'     => NHRST_ASSETS . '/js/admin.js',
                 'version' => filemtime( NHRST_PATH . '/assets/js/admin.js' ),
+                'deps'    => [ 'jquery', 'wp-util' ]
+            ],
+            'nhrst-common-script' => [
+                'src'     => NHRST_ASSETS . '/js/common.js',
+                'version' => filemtime( NHRST_PATH . '/assets/js/common.js' ),
                 'deps'    => [ 'jquery', 'wp-util' ]
             ],
         ];
@@ -78,11 +81,23 @@ class Assets {
             wp_register_style( $handle, $style['src'], $deps, $style['version'] );
         }
 
-        wp_localize_script( 'nhrst-admin-script', 'nhrstSmartsyncTable', [
+        wp_localize_script( 'nhrst-admin-script', 'nhrstSmartsyncTableObj', [
             'nonce' => wp_create_nonce( 'nhrst-admin-nonce' ),
             'confirm' => __( 'Are you sure?', 'nhrst-smartsync-table' ),
             'error' => __( 'Something went wrong', 'nhrst-smartsync-table' ),
             'apiUrl' => esc_url_raw(rest_url('nhrst-smartsync-table/v1/settings')),
         ] );
+
+        wp_enqueue_script( 'nhrst-common-script' );
+
+        wp_localize_script(
+            'nhrst-common-script', 
+            'nhrstSmartSyncTableCommonObj', 
+            [
+                'ajax_url' => admin_url('admin-ajax.php'),
+                'nonce' => wp_create_nonce('nhrst-common-nonce'),
+                'date_format' => get_option('date_format', 'Y-m-d'),
+            ]
+        );
     }
 }

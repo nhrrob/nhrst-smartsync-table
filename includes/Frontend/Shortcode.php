@@ -18,6 +18,9 @@ class Shortcode extends App
 
     }
 
+    public function init() {
+        // add_shortcode('nhrst_table_block', [$this, 'render_nhrst_table_block']);
+    }
     /**
      * Shortcode handler
      *
@@ -26,10 +29,10 @@ class Shortcode extends App
      *
      * @return string
      */
-    public function render_shortcode($atts, $content = '')
+    public function render_nhrst_table_block($atts, $content = '')
     {
-        wp_enqueue_script('nhrst-script');
-        wp_enqueue_style('nhrst-style');
-        wp_enqueue_style('nhrst-admin-style');
+        // wp_enqueue_script('nhrst-script');
+        // wp_enqueue_style('nhrst-style');
+        // wp_enqueue_style('nhrst-admin-style');
     }
 }

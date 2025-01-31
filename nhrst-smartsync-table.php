@@ -9,9 +9,12 @@
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Text Domain: nhrst-smartsync-table
+ * Domain Path: /languages
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
+
+use Nhrst\SmartsyncTable\App;
 
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
@@ -42,6 +45,8 @@ final class Nhrst_Smartsync_Table {
         register_activation_hook( __FILE__, [ $this, 'activate' ] );
 
         add_action( 'plugins_loaded', [ $this, 'init_plugin' ] );
+
+        add_action('init', [$this, 'load_textdomain']);
     }
 
     /**
@@ -81,21 +86,27 @@ final class Nhrst_Smartsync_Table {
      * @return void
      */
     public function init_plugin() {
-
         new Nhrst\SmartsyncTable\Assets();
 
+        $ajaxObj = new Nhrst\SmartsyncTable\Ajax();
+        $apiObj = new Nhrst\SmartsyncTable\Api();
+        $cliObj = new Nhrst\SmartsyncTable\Cli();
+        $blocksObj = new Nhrst\SmartsyncTable\Blocks();
+        $frontendObj = new Nhrst\SmartsyncTable\Frontend();
+
         if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-            new Nhrst\SmartsyncTable\Ajax();
+            $ajaxObj->init();
         }
 
         if ( is_admin() ) {
             new Nhrst\SmartsyncTable\Admin();
         } else {
-            new Nhrst\SmartsyncTable\Frontend();
+            $frontendObj->init();
         }
 
-        new Nhrst\SmartsyncTable\API();
-        new Nhrst\SmartsyncTable\CLI();
+        $apiObj->init();
+        $cliObj->init();
+        $blocksObj->init();
     }
 
     /**
@@ -107,6 +118,16 @@ final class Nhrst_Smartsync_Table {
         $installer = new Nhrst\SmartsyncTable\Installer();
         $installer->run();
     }
+
+    /**
+     * Load textdomain
+     *
+     * @return void
+     */
+    public function load_textdomain() {
+        load_plugin_textdomain('nhrst-smartsync-table', false, dirname(plugin_basename(__FILE__)) . '/languages/');
+    }
+
 }
 
 /**

@@ -2,6 +2,7 @@
 
 namespace Nhrst\SmartsyncTable\Admin;
 
+use Nhrst\SmartsyncTable\Api;
 use WP_REST_Response;
 
 /**
@@ -9,7 +10,6 @@ use WP_REST_Response;
  */
 class SettingsPage extends Page
 {
-
     /**
      * Initialize the class
      */
@@ -25,6 +25,10 @@ class SettingsPage extends Page
      */
     public function view()
     {
+        $apiObj = new Api();
+
+        $data = $apiObj->fetch_table_data();
+
         ob_start();
         include NHRST_VIEWS_PATH . '/admin/settings/index.php';
         $content = ob_get_clean();
