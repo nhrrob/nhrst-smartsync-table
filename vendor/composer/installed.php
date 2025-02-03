@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '1443ec8bda3e86486d472ebbd339968d42811b88',
+        'reference' => 'bbf48e39b494c1f5a0840b8f20233ee17de232ef',
         'name' => 'nhrst/smartsync-table',
         'dev' => true,
     ),
@@ -25,7 +25,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '1443ec8bda3e86486d472ebbd339968d42811b88',
+            'reference' => 'bbf48e39b494c1f5a0840b8f20233ee17de232ef',
             'dev_requirement' => false,
         ),
         'phpcsstandards/phpcsextra' => array(
