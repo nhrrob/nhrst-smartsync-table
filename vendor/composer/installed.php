@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'bbf48e39b494c1f5a0840b8f20233ee17de232ef',
+        'reference' => 'fc1070eb18f7a737f606357e83201324e5dc3890',
         'name' => 'nhrst/smartsync-table',
         'dev' => true,
     ),
@@ -25,7 +25,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'bbf48e39b494c1f5a0840b8f20233ee17de232ef',
+            'reference' => 'fc1070eb18f7a737f606357e83201324e5dc3890',
             'dev_requirement' => false,
         ),
         'phpcsstandards/phpcsextra' => array(
@@ -36,7 +36,7 @@
             'aliases' => array(
                 0 => '1.x-dev',
             ),
-            'reference' => '31ef149a1ee85ec0d355e58418d78d927e89d185',
+            'reference' => 'cf28c840b04985ef6a9aabb15ef14dd7b9d3b550',
             'dev_requirement' => true,
         ),
         'phpcsstandards/phpcsutils' => array(
@@ -47,7 +47,7 @@
             'aliases' => array(
                 0 => '1.x-dev',
             ),
-            'reference' => '8ef592afe141d07ab178ca85dca0853d35fbd61a',
+            'reference' => '060222e14c567c00fc4fd056ec7af809810c1fbc',
             'dev_requirement' => true,
         ),
         'squizlabs/php_codesniffer' => array(
@@ -58,7 +58,7 @@
             'aliases' => array(
                 0 => '3.x-dev',
             ),
-            'reference' => '2cbfb3641dfaae3ab168a8d764ec65161ef33950',
+            'reference' => '9c6ad66fe0b24670eb0566bd8178be7345b138a5',
             'dev_requirement' => true,
         ),
         'wp-coding-standards/wpcs' => array(
@@ -69,7 +69,7 @@
             'aliases' => array(
                 0 => '9999999-dev',
             ),
-            'reference' => 'c028f329aadd97788288c5cb4d1884eca50b954d',
+            'reference' => '38c00390317f4018c56e0892e5e7b414039f8426',
             'dev_requirement' => true,
         ),
     ),
