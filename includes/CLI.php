@@ -8,7 +8,7 @@ namespace Nhrst\SmartsyncTable;
 class Cli extends App {
 
     /**
-     * Initialize the class
+     * Initialize the class 
      */
     function __construct() {
         parent::__construct();

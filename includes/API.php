@@ -8,7 +8,7 @@ namespace Nhrst\SmartsyncTable;
 class Api extends App {
 
     /**
-     * Class constructor
+     * Class constructor 
      */
     public function __construct() {
         parent::__construct();
