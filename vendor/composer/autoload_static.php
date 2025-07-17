@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInite644c9fe1b22df9fd66b42a248660a13
+class ComposerStaticInitb5675202d821845d8694f0f8a854cec1
 {
     public static $files = array (
         'cc1dc348bc7b5c9fd5b56654a51fcda7' => __DIR__ . '/../..' . '/includes/functions.php',
@@ -26,14 +26,29 @@ class ComposerStaticInite644c9fe1b22df9fd66b42a248660a13
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Nhrst\\SmartsyncTable\\Admin' => __DIR__ . '/../..' . '/includes/Admin.php',
+        'Nhrst\\SmartsyncTable\\Admin\\Menu' => __DIR__ . '/../..' . '/includes/Admin/Menu.php',
+        'Nhrst\\SmartsyncTable\\Admin\\Page' => __DIR__ . '/../..' . '/includes/Admin/Page.php',
+        'Nhrst\\SmartsyncTable\\Admin\\SettingsPage' => __DIR__ . '/../..' . '/includes/Admin/SettingsPage.php',
+        'Nhrst\\SmartsyncTable\\Admin\\Tables\\SettingsTable' => __DIR__ . '/../..' . '/includes/Admin/Tables/SettingsTable.php',
+        'Nhrst\\SmartsyncTable\\Ajax' => __DIR__ . '/../..' . '/includes/Ajax.php',
+        'Nhrst\\SmartsyncTable\\Api' => __DIR__ . '/../..' . '/includes/Api.php',
+        'Nhrst\\SmartsyncTable\\App' => __DIR__ . '/../..' . '/includes/App.php',
+        'Nhrst\\SmartsyncTable\\Assets' => __DIR__ . '/../..' . '/includes/Assets.php',
+        'Nhrst\\SmartsyncTable\\Blocks' => __DIR__ . '/../..' . '/includes/Blocks.php',
+        'Nhrst\\SmartsyncTable\\Cli' => __DIR__ . '/../..' . '/includes/Cli.php',
+        'Nhrst\\SmartsyncTable\\Frontend' => __DIR__ . '/../..' . '/includes/Frontend.php',
+        'Nhrst\\SmartsyncTable\\Frontend\\Shortcode' => __DIR__ . '/../..' . '/includes/Frontend/Shortcode.php',
+        'Nhrst\\SmartsyncTable\\Installer' => __DIR__ . '/../..' . '/includes/Installer.php',
+        'Nhrst\\SmartsyncTable\\Traits\\GlobalTrait' => __DIR__ . '/../..' . '/includes/Traits/GlobalTrait.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInite644c9fe1b22df9fd66b42a248660a13::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInite644c9fe1b22df9fd66b42a248660a13::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInite644c9fe1b22df9fd66b42a248660a13::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb5675202d821845d8694f0f8a854cec1::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb5675202d821845d8694f0f8a854cec1::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitb5675202d821845d8694f0f8a854cec1::$classMap;
 
         }, null, ClassLoader::class);
     }

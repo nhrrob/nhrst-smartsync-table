@@ -7,4 +7,19 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Nhrst\\SmartsyncTable\\Admin' => $baseDir . '/includes/Admin.php',
+    'Nhrst\\SmartsyncTable\\Admin\\Menu' => $baseDir . '/includes/Admin/Menu.php',
+    'Nhrst\\SmartsyncTable\\Admin\\Page' => $baseDir . '/includes/Admin/Page.php',
+    'Nhrst\\SmartsyncTable\\Admin\\SettingsPage' => $baseDir . '/includes/Admin/SettingsPage.php',
+    'Nhrst\\SmartsyncTable\\Admin\\Tables\\SettingsTable' => $baseDir . '/includes/Admin/Tables/SettingsTable.php',
+    'Nhrst\\SmartsyncTable\\Ajax' => $baseDir . '/includes/Ajax.php',
+    'Nhrst\\SmartsyncTable\\Api' => $baseDir . '/includes/Api.php',
+    'Nhrst\\SmartsyncTable\\App' => $baseDir . '/includes/App.php',
+    'Nhrst\\SmartsyncTable\\Assets' => $baseDir . '/includes/Assets.php',
+    'Nhrst\\SmartsyncTable\\Blocks' => $baseDir . '/includes/Blocks.php',
+    'Nhrst\\SmartsyncTable\\Cli' => $baseDir . '/includes/Cli.php',
+    'Nhrst\\SmartsyncTable\\Frontend' => $baseDir . '/includes/Frontend.php',
+    'Nhrst\\SmartsyncTable\\Frontend\\Shortcode' => $baseDir . '/includes/Frontend/Shortcode.php',
+    'Nhrst\\SmartsyncTable\\Installer' => $baseDir . '/includes/Installer.php',
+    'Nhrst\\SmartsyncTable\\Traits\\GlobalTrait' => $baseDir . '/includes/Traits/GlobalTrait.php',
 );

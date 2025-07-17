@@ -14,3 +14,4 @@ node_modules
 /vendor/phpcsstandards
 /vendor/squizlabs
 /vendor/wp-coding-standards
+/includes/blocks/table-block/node_modules

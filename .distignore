@@ -47,3 +47,7 @@ postcss.config.js
 /vendor/phpcsstandards
 /vendor/squizlabs
 /vendor/wp-coding-standards
+Makefile
+BUILD-GUIDE.md
+/includes/blocks/table-block/src
+/includes/blocks/table-block/node_modules
