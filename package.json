@@ -4,26 +4,12 @@
   "description": "A WordPress plugin to fetch data from a remote API, display it via a custom block, and manage it in the admin area.",
   "main": "nhrst-smartsync-table.php",
   "scripts": {
-    "prebuild": "npm run check:deps",
-    "build": "npm-run-all --sequential check:deps install:dev build:js test install:prod dist:create",
-    "build:dev": "npm-run-all --sequential check:deps install:dev build:js",
-    "dev": "npm-run-all --sequential check:deps install:dev --parallel dev:watch",
-    "dev:watch": "cd includes/blocks/table-block && npm run dev",
-    "build:js": "cd includes/blocks/table-block && npm run build",
-    "test": "npm-run-all --sequential lint:js phpcs",
-    "lint:js": "cd includes/blocks/table-block && npm run lint:js",
-    "lint:js:fix": "cd includes/blocks/table-block && npm run lint:js -- --fix",
-    "phpcs": "cross-env-shell \"vendor/bin/phpcs\"",
-    "phpcs:fix": "cross-env-shell \"vendor/bin/phpcbf\"",
-    "clean": "npm-run-all --parallel clean:*",
-    "clean:vendor": "rimraf vendor",
-    "clean:js": "rimraf includes/blocks/table-block/node_modules includes/blocks/table-block/build",
-    "clean:dist": "rimraf *.zip && rimraf ../*.zip",
-    "install:dev": "composer install --optimize-autoloader --no-interaction && cd includes/blocks/table-block && npm install",
-    "install:prod": "composer install --no-dev --optimize-autoloader --no-interaction",
-    "dist:create": "npm run clean:dist && wp dist-archive . --format=zip",
-    "check:deps": "node -e \"const w=require('which');['composer','npm','wp'].forEach(c=>{try{w.sync(c);console.log('✓',c,'available')}catch{console.error('✗',c,'not found');process.exit(1)}});console.log('🎉 All dependencies available!')\"",
-    "prepare": "cd includes/blocks/table-block && npm install"
+    "dist": "composer install --no-dev && npm run test && wp dist-archive .",
+    "build": "cd includes/blocks/table-block && npm run build",
+    "dev": "cd includes/blocks/table-block && npm run dev",
+    "test": "npm run phpcs && npm run lint",
+    "lint": "cd includes/blocks/table-block && npm run lint:js",
+    "phpcs": "phpcs"
   },
   "repository": {
     "type": "git",
@@ -40,17 +26,6 @@
   ],
   "author": "Nazmul Hasan Robin <robin.sust08@gmail.com>",
   "license": "GPL-2.0-or-later",
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=8.0.0"
-  },
-  "devDependencies": {
-    "npm-run-all": "^4.1.5",
-    "cross-env": "^7.0.3",
-    "rimraf": "^5.0.5",
-    "which": "^4.0.0",
-    "chalk": "^4.1.2"
-  },
   "files": [
     "includes/",
     "assets/",
