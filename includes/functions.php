@@ -1,3 +1,8 @@
-<?php 
+<?php
+/**
+ * Plugin functions
+ *
+ * @package NhrstSmartsyncTable
+ */
 
-//Silence is Golden!
+// Silence is Golden!

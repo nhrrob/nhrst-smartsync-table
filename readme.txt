@@ -1,4 +1,4 @@
-=== NHR SmartSync Table by Nazmul Hasan Robin ===
+=== NHR SmartSync Table ===
 Contributors: nhrrob
 Tags: table, api management, database, api table, dynamic table
 Requires at least: 6.0

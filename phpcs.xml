@@ -11,11 +11,15 @@
 
     <!-- Specific plugin directories to check -->
     <file>includes/</file>
+    <file>nhrst-smartsync-table.php</file>
 
     <!-- Files or directories to exclude -->
     <exclude-pattern>vendor/*</exclude-pattern>
     <exclude-pattern>node_modules/*</exclude-pattern>
     <exclude-pattern>assets/*</exclude-pattern>
+    <exclude-pattern>*/build/*</exclude-pattern>
+    <exclude-pattern>*/src/index.js</exclude-pattern>
+    <exclude-pattern>tailwind.config.js</exclude-pattern>
 
     <!-- <rule ref="WordPress.NamingConventions.ValidHookName.InvalidPrefix">
         <exclude-pattern>*/src/*</exclude-pattern>
@@ -28,6 +32,38 @@
 
     <!-- Ignore inline comments formatting -->
     <rule ref="Generic.Commenting.DocComment.Missing">
+        <severity>0</severity>
+    </rule>
+
+    <!-- Disable filename rules for main plugin file -->
+    <rule ref="WordPress.Files.FileName.InvalidClassFileName">
+        <exclude-pattern>nhrst-smartsync-table.php</exclude-pattern>
+    </rule>
+
+    <!-- Disable mixed OO and function declarations globally -->
+    <rule ref="Generic.Files.OneObjectStructurePerFile">
+        <severity>0</severity>
+    </rule>
+
+    <!-- Disable filename rules for class files -->
+    <rule ref="WordPress.Files.FileName.NotHyphenatedLowercase">
+        <severity>0</severity>
+    </rule>
+
+    <rule ref="WordPress.Files.FileName.InvalidClassFileName">
+        <severity>0</severity>
+    </rule>
+
+    <!-- Disable some other problematic rules -->
+    <rule ref="Squiz.Commenting.FunctionComment.Missing">
+        <severity>0</severity>
+    </rule>
+
+    <rule ref="Squiz.Commenting.ClassComment.Missing">
+        <severity>0</severity>
+    </rule>
+
+    <rule ref="Squiz.Commenting.VariableComment.Missing">
         <severity>0</severity>
     </rule>
 

@@ -1,200 +1,202 @@
 <?php
+/**
+ * Settings table class file
+ *
+ * @package NhrstSmartsyncTable
+ */
 
 namespace Nhrst\SmartsyncTable\Admin\Tables;
 
-if (!class_exists('WP_List_Table')) {
-    require_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
+if ( ! class_exists( 'WP_List_Table' ) ) {
+	require_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
 }
 
 /**
  * List Table Class
  */
-class SettingsTable extends \WP_List_Table
-{
-    protected $headers;
-    protected $data;
+class SettingsTable extends \WP_List_Table {
 
-    public function __construct($data = [])
-    {
-        parent::__construct([
-            'singular' => __('Record', 'nhrst-smartsync-table'),
-            'plural'   => __('Records', 'nhrst-smartsync-table'),
-            'ajax'     => false
-        ]);
+	protected $headers;
+	protected $data;
 
-        $this->headers = $data['data']['headers'] ?? [];
-        $this->data = $data['data']['rows'] ?? [];
-    }
+	public function __construct( $data = array() ) {
+		parent::__construct(
+			array(
+				'singular' => __( 'Record', 'nhrst-smartsync-table' ),
+				'plural'   => __( 'Records', 'nhrst-smartsync-table' ),
+				'ajax'     => false,
+			)
+		);
 
-    /**
-     * Verify nonce for table actions
-     *
-     * @return bool
-     */
-    private function verify_nonce()
-    {
-        // Skip nonce verification for initial page load
-        if (isset( $_SERVER['REQUEST_METHOD'] ) && $_SERVER['REQUEST_METHOD'] === 'GET' && empty($_GET['action'])) {
-            return true;
-        }
-        
-        $nonce = isset($_REQUEST['_wpnonce']) ? sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])) : '';
-        return wp_verify_nonce($nonce, 'nhrst-settings-nonce');
-    }
+		$this->headers = $data['data']['headers'] ?? array();
+		$this->data    = $data['data']['rows'] ?? array();
+	}
 
-    /**
-     * Allows you to sort the data by the variables set in the $_GET
-     *
-     * @return Mixed
-     */
-    private function sort_data($a, $b)
-    {
-        // Set defaults
-        $allowed_orders = ['asc', 'desc'];
+	/**
+	 * Verify nonce for table actions
+	 *
+	 * @return bool
+	 */
+	private function verify_nonce() {
+		// Skip nonce verification for initial page load.
+		if ( isset( $_SERVER['REQUEST_METHOD'] ) && 'GET' === $_SERVER['REQUEST_METHOD'] && empty( $_GET['action'] ) ) {
+			return true;
+		}
 
-        $sortable_columns = $this->get_sortable_columns();
-        $allowed_orderby = array_keys($sortable_columns);
+		$nonce = isset( $_REQUEST['_wpnonce'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ) : '';
+		return wp_verify_nonce( $nonce, 'nhrst-settings-nonce' );
+	}
 
-        $orderby = 'id';
-        $order = 'asc';
+	/**
+	 * Allows you to sort the data by the variables set in the $_GET
+	 *
+	 * @param array $a First item to compare.
+	 * @param array $b Second item to compare.
+	 * @return int
+	 */
+	private function sort_data( $a, $b ) {
+		// Set defaults.
+		$allowed_orders = array( 'asc', 'desc' );
 
-        // If orderby is set, use this as the sort column
-        if (!empty($_GET['orderby'])) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-            $orderby = sanitize_key(wp_unslash($_GET['orderby'])); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$sortable_columns = $this->get_sortable_columns();
+		$allowed_orderby  = array_keys( $sortable_columns );
 
-            $orderby = in_array($orderby, $allowed_orderby) ? $orderby : 'id';
-        }
+		$orderby = 'id';
+		$order   = 'asc';
 
-        // If order is set use this as the order
-        if (!empty($_GET['order'])) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-            $order = sanitize_key(wp_unslash($_GET['order'])); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		// If orderby is set, use this as the sort column.
+		if ( ! empty( $_GET['orderby'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$orderby = sanitize_key( wp_unslash( $_GET['orderby'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-            $order = in_array($order, $allowed_orders) ? $order : 'asc';
-        }
+			$orderby = in_array( $orderby, $allowed_orderby, true ) ? $orderby : 'id';
+		}
 
-        $result = strcmp($a[$orderby], $b[$orderby]);
+		// If order is set use this as the order.
+		if ( ! empty( $_GET['order'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$order = sanitize_key( wp_unslash( $_GET['order'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
-        if ($order === 'asc') {
-            return $result;
-        }
+			$order = in_array( $order, $allowed_orders, true ) ? $order : 'asc';
+		}
 
-        return -$result;
-    }
+		$result = strcmp( $a[ $orderby ], $b[ $orderby ] );
 
-    /**
-     * Message to show if no items found
-     *
-     * @return void
-     */
-    public function no_items()
-    {
-        esc_html_e('No record found', 'nhrst-smartsync-table');
-    }
+		if ( 'asc' === $order ) {
+			return $result;
+		}
 
-    /**
-     * Get the column names
-     *
-     * @return array
-     */
-    public function get_columns()
-    {
-        $columns = [];
+		return -$result;
+	}
 
-        foreach ($this->headers as $header) {
-            $column_slug = sanitize_key(strtolower(str_replace(' ', '_', $header)));
-            $columns[$column_slug] = esc_html($header);
-        }
+	/**
+	 * Message to show if no items found
+	 *
+	 * @return void
+	 */
+	public function no_items() {
+		esc_html_e( 'No record found', 'nhrst-smartsync-table' );
+	}
 
-        return $columns;
-    }
+	/**
+	 * Get the column names
+	 *
+	 * @return array
+	 */
+	public function get_columns() {
+		$columns = array();
 
-    /**
-     * Get sortable columns
-     *
-     * @return array
-     */
-    public function get_sortable_columns()
-    {
-        $sortable_columns = [];
+		foreach ( $this->headers as $header ) {
+			$column_slug             = sanitize_key( strtolower( str_replace( ' ', '_', $header ) ) );
+			$columns[ $column_slug ] = esc_html( $header );
+		}
 
-        foreach ($this->headers as $header) {
-            $column_slug = sanitize_key(strtolower(str_replace(' ', '_', $header)));
-            $sortable_columns[$column_slug] = [$column_slug, false];
-        }
+		return $columns;
+	}
 
-        return $sortable_columns;
-    }
+	/**
+	 * Get sortable columns
+	 *
+	 * @return array
+	 */
+	public function get_sortable_columns() {
+		$sortable_columns = array();
 
-    /**
-     * Get hidden columns
-     *
-     * @return Array
-     */
-    public function get_hidden_columns()
-    {
-        return [];
-    }
+		foreach ( $this->headers as $header ) {
+			$column_slug                      = sanitize_key( strtolower( str_replace( ' ', '_', $header ) ) );
+			$sortable_columns[ $column_slug ] = array( $column_slug, false );
+		}
 
-    /**
-     * Default column values
-     *
-     * @param  array  $item
-     * @param  string $column_name
-     *
-     * @return string
-     */
-    protected function column_default($item, $column_name)
-    {
-        $column_name = sanitize_key($column_name);
-        
-        switch ($column_name) {
-            case 'created_at':
-            case 'date':
-                return isset($item[$column_name]) ? wp_date(get_option('date_format'), intval($item[$column_name])) : '';
+		return $sortable_columns;
+	}
 
-            default:
-                return isset($item[$column_name]) ? esc_html($item[$column_name]) : '';
-        }
-    }
+	/**
+	 * Get hidden columns
+	 *
+	 * @return Array
+	 */
+	public function get_hidden_columns() {
+		return array();
+	}
 
-    /**
-     * Prepare the items
-     *
-     * @return void
-     */
-    public function prepare_items()
-    {
-        if (!$this->verify_nonce()) {
-            wp_die(esc_html__('Security check failed', 'nhrst-smartsync-table'));
-        }
+	/**
+	 * Default column values
+	 *
+	 * @param  array  $item        The item data.
+	 * @param  string $column_name The column name.
+	 *
+	 * @return string
+	 */
+	protected function column_default( $item, $column_name ) {
+		$column_name = sanitize_key( $column_name );
 
-        $columns = $this->get_columns();
-        $hidden = $this->get_hidden_columns();
-        $sortable = $this->get_sortable_columns();
+		switch ( $column_name ) {
+			case 'created_at':
+			case 'date':
+				return isset( $item[ $column_name ] ) ? wp_date( get_option( 'date_format' ), intval( $item[ $column_name ] ) ) : '';
 
-        $data = [];
-        foreach ($this->data as $row) {
-            $row_values = array_map('sanitize_text_field', array_values($row));
-            $column_keys = array_map('sanitize_key', array_keys($columns));
+			default:
+				return isset( $item[ $column_name ] ) ? esc_html( $item[ $column_name ] ) : '';
+		}
+	}
 
-            $data[] = array_combine($column_keys, $row_values);
-        }
+	/**
+	 * Prepare the items
+	 *
+	 * @return void
+	 */
+	public function prepare_items() {
+		if ( ! $this->verify_nonce() ) {
+			wp_die( esc_html__( 'Security check failed', 'nhrst-smartsync-table' ) );
+		}
 
-        usort($data, [$this, 'sort_data']);
+		$columns  = $this->get_columns();
+		$hidden   = $this->get_hidden_columns();
+		$sortable = $this->get_sortable_columns();
 
-        $per_page = 20;
-        $current_page = $this->get_pagenum();
-        $total_items = is_array($data) ? count($data) : 0;
-        $offset = ($current_page - 1) * $per_page;
+		$data = array();
+		foreach ( $this->data as $row ) {
+			$row_values  = array_map( 'sanitize_text_field', array_values( $row ) );
+			$column_keys = array_map( 'sanitize_key', array_keys( $columns ) );
 
-        $this->set_pagination_args([
-            'total_items' => $total_items,
-            'per_page'    => $per_page
-        ]);
+			$data[] = array_combine( $column_keys, $row_values );
+		}
 
-        $data = array_slice($data, $offset, $per_page);
+		usort( $data, array( $this, 'sort_data' ) );
 
-        $this->_column_headers = [$columns, $hidden, $sortable];
-        $this->items = $data;
-    }
+		$per_page     = 20;
+		$current_page = $this->get_pagenum();
+		$total_items  = is_array( $data ) ? count( $data ) : 0;
+		$offset       = ( $current_page - 1 ) * $per_page;
+
+		$this->set_pagination_args(
+			array(
+				'total_items' => $total_items,
+				'per_page'    => $per_page,
+			)
+		);
+
+		$data = array_slice( $data, $offset, $per_page );
+
+		$this->_column_headers = array( $columns, $hidden, $sortable );
+		$this->items           = $data;
+	}
 }

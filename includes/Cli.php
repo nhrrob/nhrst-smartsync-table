@@ -1,4 +1,9 @@
 <?php
+/**
+ * CLI command class file
+ *
+ * @package NhrstSmartsyncTable
+ */
 
 namespace Nhrst\SmartsyncTable;
 
@@ -7,22 +12,32 @@ namespace Nhrst\SmartsyncTable;
  */
 class Cli extends App {
 
-    /**
-     * Initialize the class 
-     */
-    function __construct() {
-        parent::__construct();
-    }
+	/**
+	 * Class constructor
+	 */
+	public function __construct() { // phpcs:ignore Generic.CodeAnalysis.UselessOverridingMethod.Found
+		parent::__construct();
+	}
 
-    public function init() {
-        if ( defined( 'WP_CLI' ) && WP_CLI ) {
-            // Usage (via command line): wp nhrst-table-api refresh
-            \WP_CLI::add_command( 'nhrst-table-api refresh', [$this, 'refresh_data'] );
-        }
-    }
+	/**
+	 * Initialize CLI functionality
+	 *
+	 * @return void
+	 */
+	public function init() {
+		if ( defined( 'WP_CLI' ) && WP_CLI ) {
+			// Usage (via command line): wp nhrst-table-api refresh.
+			\WP_CLI::add_command( 'nhrst-table-api refresh', array( $this, 'refresh_data' ) );
+		}
+	}
 
-    public function refresh_data() {
-        delete_transient( $this->table_cache_key );
-        \WP_CLI::success( __('API data cache has been cleared.', 'nhrst-smartsync-table') );
-    }
+	/**
+	 * Refresh API data cache
+	 *
+	 * @return void
+	 */
+	public function refresh_data() {
+		delete_transient( $this->table_cache_key );
+		\WP_CLI::success( __( 'API data cache has been cleared.', 'nhrst-smartsync-table' ) );
+	}
 }
