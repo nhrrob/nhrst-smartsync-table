@@ -2,6 +2,8 @@
 
 WordPress plugin that transforms remote API data into dynamic tables and Gutenberg blocks.
 
+**Demo API**: `https://miusage.com/v1/challenge/1/`
+
 ## Quick Start
 
 ```bash

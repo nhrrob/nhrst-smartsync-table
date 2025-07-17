@@ -1,77 +1,207 @@
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
+*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
+}
+
+::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.static {
+  position: static;
+}
+
+.block {
+  display: block;
+}
+
+.table {
+  display: table;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Custom Plugin Styles */
 
 .nhrst-smartsync-table-settings-page h1 {
-    color: #2c3337;
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 10px;
+  color: #2c3337;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
 .nhrst-smartsync-table-settings-page .nhrst-button {
-    border: 0;
-    border-radius: 3px;
-    cursor: pointer;
-    display: inline-block;
-    margin: 0;
-    text-decoration: none;
-    text-align: center;
-    vertical-align: middle;
-    white-space: nowrap;
-    text-shadow: none;
-    box-shadow: none;
-    outline: none;
-
-    font-size: 14px;
-    font-weight: 500;
-    padding: 9px 15px;
-    min-height: 36px;
-    line-height: 16px;
-    border-width: 1px;
-    border-style: solid;
-
-    background-color: #e27730;
-    border-color: #e27730;
-    color: #fff;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-shadow: none;
+  box-shadow: none;
+  outline: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 9px 15px;
+  min-height: 36px;
+  line-height: 16px;
+  border-width: 1px;
+  border-style: solid;
+  background-color: #e27730;
+  border-color: #e27730;
+  color: #fff;
 }
 
 .nhrst-smartsync-table-settings-page .nhrst-button:hover {
-    background-color: #b85a1b;
-    border-color: #b85a1b;
-    color: #fff;
-}
-
-.nhrst-smartsync-table-settings-page .nhrst-settings-page-navbar {
-    min-height: 58px;
-    background-color: #fff;
-    font-size: 14px;
-    margin: 0 -20px 20px;
-    padding: 0 20px;
-}
-
-.nhrst-smartsync-table-settings-page .nhrst-settings-page-navbar a.tab {
-    border-bottom: 3px solid #fff;
-    box-shadow: none;
-    color: #666;
-    display: inline-block;
-    margin-right: 30px;
-    padding: 20px 0 17px 0;
-    text-decoration: none;
-}
-
-.nhrst-smartsync-table-settings-page .nhrst-settings-page-navbar a.tab:hover {
-    border-color: #999;
-}
-
-.nhrst-smartsync-table-settings-page .nhrst-settings-page-navbar a.tab.active {
-    border-color: #e27730;
+  background-color: #d66a2a;
+  border-color: #d66a2a;
 }
 
 .nhrst-smartsync-table-settings-page .tablenav.top {
-    display: none;
+  display: none;
 }
 
-.nhrst-settings-page-form {
-    margin-top: 20px;
+/* Navbar and Tab Styles */
+
+.nhrst-settings-page-navbar {
+  margin-left: -20px;
+  margin-right: -20px;
+  margin-bottom: 20px;
+  min-height: 58px;
+  border-bottom: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 14px;
+  line-height: 1.25rem;
+}
+
+.nhrst-settings-page-navbar .tab {
+  display: inline-block;
+  border-bottom: 4px solid transparent;
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: #4b5563;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.nhrst-settings-page-navbar .tab:hover {
+  border-bottom-color: #d66a2a;
+  color: #d66a2a;
+}
+
+.nhrst-settings-page-navbar .tab.active {
+  border-bottom-color: #e27730;
+  color: #e27730;
 }
