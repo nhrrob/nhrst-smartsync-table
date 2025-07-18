@@ -5,8 +5,10 @@
   "main": "nhrst-smartsync-table.php",
   "scripts": {
     "dist": "composer install --no-dev && npm run test && wp dist-archive .",
-    "build": "cd includes/blocks/table-block && npm run build",
-    "dev": "cd includes/blocks/table-block && npm run dev",
+    "build": "npm run build:tailwind && cd includes/blocks/table-block && npm run build",
+    "dev": "npm run dev:tailwind & cd includes/blocks/table-block && npm run dev",
+    "build:tailwind": "npx tailwindcss -i ./assets/css/admin.css -o ./assets/css/admin.out.css",
+    "dev:tailwind": "npx tailwindcss -i ./assets/css/admin.css -o ./assets/css/admin.out.css --watch",
     "test": "npm run phpcs && npm run lint",
     "lint": "cd includes/blocks/table-block && npm run lint:js",
     "phpcs": "phpcs"
