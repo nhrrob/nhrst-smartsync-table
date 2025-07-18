@@ -32,14 +32,14 @@
     border-width: 1px;
     border-style: solid;
 
-    background-color: #e27730;
-    border-color: #e27730;
+    background-color: #423658;
+    border-color: #423658;
     color: #fff;
 }
 
 .nhrst-smartsync-table-settings-page .nhrst-button:hover {
-    background-color: #d66a2a;
-    border-color: #d66a2a;
+    background-color: #423658;
+    border-color: #423658;
 }
 
 .nhrst-smartsync-table-settings-page .tablenav.top {
@@ -65,13 +65,14 @@
     color: #4b5563;
     text-decoration: none;
     transition: all 0.2s ease-in-out;
+    outline: none;
 }
 
 .nhrst-settings-page-navbar .tab:hover {
-    border-color: #d66a2a;
-    color: #d66a2a;
+    border-color: #423658;
+    color: #423658;
 }
 
 .nhrst-settings-page-navbar .tab.active {
-    border-color: #e27730;
+    border-color: #423658;
 }

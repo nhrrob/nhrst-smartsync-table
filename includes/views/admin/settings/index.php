@@ -44,7 +44,7 @@ $rows    = $data['data']['rows'] ?? array();
 			?>
 			
 			<a href="<?php echo esc_url( $table_url ); ?>" class="tab active">
-				<?php esc_html_e( 'NHR SmartSync Table', 'nhrst-smartsync-table' ); ?>
+				<?php esc_html_e( 'SmartSync Table', 'nhrst-smartsync-table' ); ?>
 			</a>
 			
 		</div>

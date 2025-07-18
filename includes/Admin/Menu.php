@@ -34,7 +34,7 @@ class Menu extends App {
 		$parent_slug = esc_html( 'nhrst-smartsync-table' );
 		$capability  = esc_html( 'manage_options' );
 
-		$hook = add_submenu_page( 'tools.php', __( 'NHR SmartSync Table', 'nhrst-smartsync-table' ), __( 'NHR SmartSync Table', 'nhrst-smartsync-table' ), $capability, $parent_slug, array( $this, 'settings_page' ) );
+		$hook = add_submenu_page( 'tools.php', __( 'SmartSync Table', 'nhrst-smartsync-table' ), __( 'SmartSync Table', 'nhrst-smartsync-table' ), $capability, $parent_slug, array( $this, 'settings_page' ) );
 
 		add_action( 'admin_head-' . $hook, array( $this, 'enqueue_assets' ) );
 	}
