@@ -3,7 +3,7 @@
         'name' => 'nhrst/smartsync-table',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '08212b21ce0023556e969939acb68626047da695',
+        'reference' => '144eb6051c946ecd781d123cf58a6432b8d92cb9',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'nhrst/smartsync-table' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '08212b21ce0023556e969939acb68626047da695',
+            'reference' => '144eb6051c946ecd781d123cf58a6432b8d92cb9',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

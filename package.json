@@ -4,7 +4,7 @@
   "description": "A WordPress plugin to fetch data from a remote API, display it via a custom block, and manage it in the admin area.",
   "main": "nhrst-smartsync-table.php",
   "scripts": {
-    "dist": "composer install --no-dev && npm run test && wp dist-archive .",
+    "dist": "composer install --no-dev && npm run test && npm run build && wp dist-archive .",
     "build": "npm run build:tailwind && cd includes/blocks/table-block && npm run build",
     "dev": "npm run dev:tailwind & cd includes/blocks/table-block && npm run dev",
     "build:tailwind": "npx tailwindcss -i ./assets/css/admin.css -o ./assets/css/admin.out.css",
@@ -37,5 +37,8 @@
     "readme.txt",
     "composer.json",
     "phpcs.xml"
-  ]
+  ],
+  "dependencies": {
+    "tailwindcss": "^3.4.17"
+  }
 }

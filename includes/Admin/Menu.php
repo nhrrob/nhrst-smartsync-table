@@ -91,7 +91,7 @@ class Menu extends App {
 			$links[] = sprintf(
 				'<a href="%s">%s</a>',
 				esc_url( $settings_url ),
-				esc_html__( 'NHR SmartSync Table', 'nhrst-smartsync-table' )
+				esc_html__( 'SmartSync Table', 'nhrst-smartsync-table' )
 			);
 		}
 
