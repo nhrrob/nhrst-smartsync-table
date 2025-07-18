@@ -11,11 +11,11 @@ npm run dev  # Install everything and start developing
 ```
 
 ## Core Features
-- Admin dashboard tables (sortable, paginated)
-- Gutenberg blocks for frontend display
+- Admin dashboard tables (sortable, paginated) - fetches data via `wp_remote_get()` with transient caching
+- Gutenberg block "NHR SmartSync Table" (`nhrst-smartsync-table/table-block`) for frontend display
 - Intelligent caching with TTL
 - Real-time AJAX updates
-- WP-CLI integration
+- WP-CLI integration (`wp nhrst-table-api refresh` - clears API cache)
 
 ## Requirements
 - PHP 7.4+ / WordPress 6.0+
@@ -24,10 +24,10 @@ npm run dev  # Install everything and start developing
 ## Commands
 
 ```bash
-npm run dev      # Develop (installs deps + file watching)
-npm run build    # Production build + ZIP
-npm run test     # Code quality checks
-npm run clean    # Clean build artifacts
+npm run dev      # Install deps + start development
+npm run build    # Production build
+npm run test     # Run tests
+npm run dist     # Create distribution package
 ```
 
 ## File Structure
