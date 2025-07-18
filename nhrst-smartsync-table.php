@@ -5,7 +5,7 @@
  * Description: A WordPress plugin to fetch data from a remote API, display it via a custom block, and manage it in the admin area.
  * Author: Nazmul Hasan Robin
  * Author URI: https://profiles.wordpress.org/nhrrob/
- * Version: 1.0.0
+ * Version: 1.0.1
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Text Domain: nhrst-smartsync-table
@@ -34,7 +34,7 @@ final class Nhrst_Smartsync_Table {
 	 *
 	 * @var string
 	 */
-	const NHRST_VERSION = '1.0.0';
+	const NHRST_VERSION = '1.0.1';
 
 	/**
 	 * Class construcotr

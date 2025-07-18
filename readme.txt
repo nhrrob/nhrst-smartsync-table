@@ -4,7 +4,7 @@ Tags: table, api management, database, api table, dynamic table
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,17 @@ Yes, tables can be configured to update in real-time when data changes, ensuring
 3. Block in the front after hiding two columns 
 
 == Changelog ==
+
+= 1.0.1 - 18/07/2025 =
+- Enhanced: Streamlined build process with improved npm scripts for better development workflow
+- Enhanced: Added Tailwind CSS integration for improved admin styling and responsive design
+- Enhanced: Updated admin interface with better navbar styles and improved layout
+- Enhanced: Optimized asset loading and updated build dependencies for better performance
+- Enhanced: Improved code quality with comprehensive PHPCS compliance fixes
+- Enhanced: Updated project documentation (PRD) with detailed feature descriptions
+- Enhanced: Consolidated build commands into single npm scripts for easier development
+- Fixed: Resolved all PHP CodeSniffer errors and warnings for better code standards
+- Fixed: Updated asset versions for improved caching and performance
 
 = 1.0.0 - 29/01/2025 =
 - Initial beta release. Cheers!!
